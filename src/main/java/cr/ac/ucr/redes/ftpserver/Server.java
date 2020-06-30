@@ -114,12 +114,8 @@ public class Server {
             @Override
             public FtpletResult afterCommand(FtpSession session, 
                     FtpRequest request, FtpReply reply) 
-                    throws FtpException, IOException {
-                //System.out.println("afterCommand " + session.getUserArgument() + " : " + session.toString() + " | " + request.getArgument() + " : " + request.getCommand() + " : " + request.getRequestLine() + " | " + reply.getMessage() + " : " + reply.toString());
-                //System.out.println("Thread #" + Thread.currentThread().getId());
-
-                //do something
-                return FtpletResult.DEFAULT;//...or return accordingly
+                    throws FtpException, IOException {             
+                return FtpletResult.DEFAULT;
             }
 
             @Override
@@ -127,20 +123,15 @@ public class Server {
                     throws FtpException, IOException {
                 System.out.println("User connection attempt.");
                 System.out.println("Username: " + session.getUser());
-                System.out.println("Session: " + session.toString());
-
-                //do something
-                return FtpletResult.DEFAULT;//...or return accordingly
+                System.out.println("Session: " + session.toString());            
+                return FtpletResult.DEFAULT;
             }
 
             @Override
             public FtpletResult onDisconnect(FtpSession session)
                     throws FtpException, IOException {
-                //System.out.println("onDisconnect " + session.getUserArgument() + " : " + session.toString());
-                //System.out.println("Thread #" + Thread.currentThread().getId());
-
-                //do something
-                return FtpletResult.DEFAULT;//...or return accordingly
+                
+                return FtpletResult.DEFAULT;
             }
         });
         serverFactory.setFtplets(m);
@@ -149,7 +140,8 @@ public class Server {
     
     public void addUser(String userName, String password) {
         BaseUser user = new BaseUser();
-        String folder = "./ftp/" + userName;
+        String desktopPath = System.getProperty("user.home") + "/Desktop";
+        String folder = desktopPath + "./ftp/" + userName;
         user.setName(userName);
         user.setPassword(password);
         user.setHomeDirectory(folder);

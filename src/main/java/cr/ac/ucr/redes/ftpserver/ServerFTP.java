@@ -16,6 +16,7 @@ public class ServerFTP {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String[] args) {
         MainWindow main = new MainWindow();
     }
